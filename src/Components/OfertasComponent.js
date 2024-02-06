@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import "../styles/Listado.css";
 
 function OfertasComponent() {
@@ -24,21 +25,27 @@ function OfertasComponent() {
   }, []);
 
   return (
-    
-      <div className="container">
-        {" "}
-        {}
-        <h1>Listado de Productos en Oferta</h1>
-        <ul>
+    <div className="container">
+      <div className="cabecera">
+        <h1 className="title">Listado de Productos en Oferta!!</h1>
+        <Link to="/" className="linkOfertas">
+          Volver
+        </Link>
+      </div>
+      <div className="productos">
+        <ul className="listaProductos">
           {ofertas.map((producto) => (
-            <li key={producto.id}>
-              <strong>{producto.name}</strong>: {producto.price}
+            <li key={producto.id} className="contenedorProducto">
+              <img src={producto.img} alt={`Imagen de ${producto.name}`} />
+              <div className="infoProducto">
+                <strong>{producto.name}</strong>
+                <span>{producto.price}€</span>
+              </div>
             </li>
           ))}
         </ul>
-
       </div>
-      
+    </div>
   );
 }
 
