@@ -113,13 +113,17 @@ function ListadoComponent() {
 
   const handleDelete = async (id) => {
     try {
+      // Realiza una solicitud DELETE al servidor para eliminar el producto con el ID proporcionado
       await axios.delete(`http://localhost:8080/api/productos/${id}`);
+      // Actualiza la lista de productos en el estado local filtrando el producto eliminado
       const updatedProductos = productos.filter(
         (producto) => producto.id !== id
       );
-      setProductos(updatedProductos);
+      setProductos(updatedProductos); // Actualiza el estado con la nueva lista de productos
+      // Muestra una alerta indicando que el producto ha sido eliminado correctamente
       alert("Producto eliminado correctamente");
     } catch (error) {
+      // Maneja cualquier error que ocurra durante el proceso de eliminación del producto
       console.error("Error al eliminar el producto:", error);
     }
   };
